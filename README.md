@@ -66,6 +66,8 @@ http://localhost:3000/api/stores/closest?latitude=6.246721&longitude=-75.568195
 
 Where `latitude` and `longitude` are the current points of your location.
 
+Note: For more detailed information about this service, you can consult the documentation once you run the service. To do so, go to http://localhost:3000/api-docs
+
 ## Preguntas y Respuestas:
 
 - ¿cual es el alcance esperado? algo orientado a monitoreo/logging que permita tener trazas de las request que se realizan al servicio? o ¿algo como una auditoria propia de forma que se guarde en un BD? ¿Qué información específica se espera registrar de cada llamado?
