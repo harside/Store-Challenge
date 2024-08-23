@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  title: InstaStore Documentation
+  version: 1.0.0
+  description: InstaStore API documentation
+
+paths:
+  /api/stores/closest:
+    get:
+      summary: Get the closest store
+      description: Returns the closest store based on latitude, longitude, and whether the store is open.
+      parameters:
+        - in: query
+          name: latitude
+          required: true
+          description: Latitude of the current location.
+          schema:
+            type: number
+            example: 6.246721
+        - in: query
+          name: longitude
+          required: true
+          description: Longitude of the current location.
+          schema:
+            type: number
+            example: -75.568195
+        - in: query
+          name: isOpen
+          required: false
+          description: Filter by stores that are open (true) or all stores (false or omitted).
+          schema:
+            type: boolean
+            example: true
+      responses:
+        200:
+          description: Closest store found successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  storeId:
+                    type: integer
+                    example: 3420
+                  storeName:
+                    type: string
+                    example: 'Cummerata, Gottlieb and Hettinger'
+                  isOpen:
+                    type: boolean
+                    example: false
+                  coordinates:
+                    type: object
+                    properties:
+                      latitude:
+                        type: string
+                        example: '6.1300946'
+                      longitude:
+                        type: string
+                        example: '-75.3965899'
+        400:
+          description: Bad request due to missing or invalid attributes.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Some attributes are required'
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: '"longitude" is required'
+        404:
+          description: Closest store not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Closest store not found'

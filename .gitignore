@@ -1,0 +1,5 @@
+.env
+postgres_data
+node_modules
+
+coverage
